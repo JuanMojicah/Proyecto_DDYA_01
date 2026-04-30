@@ -30,8 +30,3 @@ El proyecto debe existir dentro de un repositorio de GitHub, donde ambos integra
 ### Consideraciones de la información
 Los usuarios no buscan el nodo “4”, buscan la “Biblioteca”. La implementación completa de la estructura debe ser capaz de identificar cada uno de estos casos de la forma más conveniente.
 
-### Casos de justificación
-Deben contar con un archivo de input de no menos de 100 líneas, en el que el código reciba órdenes y sea completamente capaz de ejecutarlas correctamente.
-
-### Resultados
-La nota final del proyecto será definida únicamente durante la sustentación. Las respuestas, la justificación del código y la ejecución del mismo serán los factores clave de la evaluación.
