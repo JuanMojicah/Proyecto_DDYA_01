@@ -39,6 +39,8 @@ CONECXIONES = [
     ("1", "4", 120),    # Entrada -> Bloque B
     ("1", "5", 150),    # Entrada -> Bloque C
     ("1", "6", 130),    # Entrada -> BLoque D
+    ("1", "7", 150),    # Entrada -> Bloque E
+    ("1", "8", 100),    # ENtrada -> BLoque F
     ("1", "17",130),    # Entrada -> Biblioteca Principal
     ("3", "1", 100),    # Bloque A -> Entrada
     ("3", "4", 10),     # BLoque A -> Bloque B
@@ -67,17 +69,45 @@ CONECXIONES = [
     ("7", "1", 150),    # Bloque E -> Entrada 
     ("7", "5", 60),     # Bloque E -> Bloque C
     ("7", "3", 70),     # BLoque E -> Bloque A
+    ("7", "6", 30),     # Bloque E -> Bloque D
     ("7", "22", 40),    # Bloque E -> Parqueadero Bloque C
     ("7", "15", 25),    # Bloque E -> Cafeteria Videojuegos
-    ("7", "")
+    ("7", "14", 45),    # Bloque E -> Cafeteria Reggio's
+    ("7", "10", 110),   # Bloque E -> Bloque H
+    ("8", "1", 100),    # Bloque F -> Entarda
+    ("8", "9", 15),     # Bloque F -> Bloque G
+    ("8", "4", 70),     # Bloque F -> Bloque B
+    ("8", "6", 50),     # Bloque F -> Bloque D
+    ("8", "17", 70),    # Bloque F -> Biblioteca principal 
+    ("8", "14", 90),    # Bloque F -> Cafeteria Reggio's
+    ("9", "1",110),     # Bloque G -> Entrada 
+    ("9", "4", 20 ),    # Bloque G -> Bloque B
+    ("9", "8", 15),     # Bloque G -> Bloque F
+    ("9", "17", 35),    # BLoque G -> Bibilioteca Principal
+    ("9", "13", 15),    # Bloque G -> Cafeteria Bloque F
+    ("10", "1", 250),   # Bloque H -> Entrada
+    ("10", "6", 100),   # BLoque H -> Bloque D
+    ("10", "7", 110),   # Bloque H -> Bloque E
+    ("10", "14", 90),   # Bloque H -> Cafeteria Reggio's
+    ("10", "11", 10),   # Bloque H -> Bloque I 
+    ("10", "24", 20),   # Bloque H -> parqueadero Bloque H
+    ("10", "19", 90),   # Bloque H -> Canchas Futbol
+    ("10", "20", 110),  # Bloque H -> Canchas Multiples / Polideportivo
+    ("10", "22", 130),  # Bloque H -> parqueadero Bloque C
+    ("10", "25", 130),  # Bloque H -> Parqueadero Polideportivo
+    ("10", "12", 120),  # Bloque H -> Cafeteria Principal 
+    ("11", "10", 10),   # Bloque I -> Bloque H 
     
     
-    
-    
-    
-    
-    
-    
-    
-    
+    #AUN FALTAN CONECXIONES PERO ALGO ES ALGO 
 ]
+
+# ─────────────────────────────────────────────
+#  CONSTRUCCIÓN DEL GRAFO
+# ─────────────────────────────────────────────
+def construir_grafo():
+    grafo = {nodo: [] for nodo in LUGARES}
+    for a, b, dist in CONECXIONES:
+        grafo[a].append((dist,b))
+        grafo[b].append((dist,a))
+    return grafo 
