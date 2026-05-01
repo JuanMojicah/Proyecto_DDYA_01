@@ -103,11 +103,102 @@ CONECXIONES = [
 ]
 
 # ─────────────────────────────────────────────
-#  CONSTRUCCIÓN DEL GRAFO
+#  CLASE GRAFO CON MATRIZ DE ABYASENCIA y aja 
 # ─────────────────────────────────────────────
-def construir_grafo():
-    grafo = {nodo: [] for nodo in LUGARES}
+class Grafo:
+    def __init__(self, size):
+        self.adj_matrix = [[0] * size for _ in range(size)]
+        self.size = size 
+        self.vertex_data = [''] * size
+        
+    def add_edge(self, u, v, weight):
+        if 0 <= u < self.size and 0 <= v < self.size:
+            self.adj_matrix[u][v] = weight
+            self.adj_matrix[v][u] = weight
+            
+    def add_vertex_data(self, vertex, data):
+        if 0 <= vertex < self.size:
+            self.vertex_data[vertex] = data 
+            
+    def dijkstra(self, start_vertex_data):
+        start_vertex = self.vertex_data.index(start_vertex_data)
+        distances = [float('inf')] * self.size 
+        distances[start_vertex] = 0 
+        visited = [False] * self.size
+        predecessors = [None] * self.size
+        
+        for _ in range(self.size):
+            min_distance = float('inf')
+            u = None
+
+            for i in range(self.size):
+                if not visited[i] and distances[i] < min_distance:
+                    min_distance = distances[i]
+                    u = i 
+                    
+            if u is None:
+                break
+            
+            visited[u] = True
+
+            for v in range(self.size):
+                if self.adj_matrix[u][v] != 0 and not visited[v]:
+                    alt = distances[u] + self.adj_matrix[u][v]
+                    if alt < distances[v]:
+                        distances[v] = alt
+                        predecessors[v] = u
+        
+        return distances, predecessors
+            
+
+    def rebuild_road(self, predecessors, start_vertex_data, end_vertex_data):
+        start = self.vertex_data.index(start_vertex_data)
+        end = self.vertex_data.index(end_vertex_data)
+        
+        actual = end
+        length = 0
+        
+        while actual is not None:
+            length += 1
+            actual = predecessors[actual]
+        
+        camino = [0] * length
+        
+        actual = end
+        i = length - 1
+        
+        while actual is not None:
+            camino[i] = actual
+            actual = predecessors[actual]
+            i -= 1
+        
+        if camino[0] != start:
+            return []
+        
+        return camino
+
+# ─────────────────────────────────────────────
+#  CONSTRUCCION DEL GRAFO DEL CAMPUS
+# ─────────────────────────────────────────────
+
+def grafo_campus():
+    n = len(LUGARES)
+    g = Grafo(n)
+    
+    mapa = {}
+    i = 0 
+    for clave in LUGARES:
+        mapa[clave] = i 
+        i += 1 
+    
+    for clave in LUGARES:
+        g.add_vertex_data(mapa[clave],LUGARES[clave])
+    
     for a, b, dist in CONECXIONES:
-        grafo[a].append((dist,b))
-        grafo[b].append((dist,a))
-    return grafo 
+        g.add_edge(mapa[a], mapa[b], dist)
+    
+    return g, mapa
+
+# ─────────────────────────────────────────────
+#  INTERFAZ DE CONSOLA
+# ─────────────────────────────────────────────
