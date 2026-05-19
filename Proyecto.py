@@ -215,55 +215,61 @@ def grafo_campus():
 
 #Funcion principal
 def main():
-    g, mapa = grafo_campus()            #Inicializa el grafo
-    salida = ""                          #Acumulador de salida para un solo print(lo uso en los UVAs para que no se salga del tiempo limite por muchos prints)
+    # Inicializa el grafo
+    g, mapa = grafo_campus()
     
-    continuar = True
-    while continuar:
-        salida += "\n=== SISTEMA DE NAVEGACION CAMPUS ===\n"
-        salida += "1. Calcular ruta (inicio -> fin)\n"
-        salida += "2. Agregar camino\n"
-        salida += "3. Bloquear punto\n"
-        salida += "4. Habilitar punto\n"
-        salida += "5. Calcular tiempo (inicio -> fin)\n"
-        salida += "6. Salir\n"
-        salida += "Opcion: "
+    # Acumulador de salida para un solo print (UVA style)
+    salida = ""
+    
+    # Lee todas las lineas del input de stdin
+    lineas = stdin.readlines()
+    
+    # Procesa el numero de operaciones
+    n = int(lineas[0].strip())
+    
+    # Procesa cada operacion
+    idx_linea = 1
+    for _ in range(n):
+        # Lee la operacion actual
+        linea = lineas[idx_linea].strip()
+        idx_linea += 1
         
-        opcion = input(salida)
-        salida = ""
+        # Separa los parametros de la linea
+        partes = linea.split()
+        opcion = partes[0]
         
-        #Opc 6: Salir del programa
-        if opcion == "6":
-            salida += "Saliendo del sistema...\n"
-            continuar = False
-        
-        #Opc 1: Calcular ruta completa (camino + tiempo)
-        elif opcion == "1":
-            salida += "Nombre del punto de inicio: "
-            inicio_nom = input(salida)
-            salida += "Nombre del punto de destino: "
-            fin_nom = input(salida)
-            salida = ""
+        # Opcion 1: Calcular ruta completa (camino + distancia)
+        if opcion == "1":
+            # Formato: 1 inicio fin
+            inicio_nom = partes[1]
+            fin_nom = partes[2]
             
-            #comprobar que los nombres existan
+            # Verifica que los nombres existan en el grafo
             if inicio_nom not in g.vertex_data or fin_nom not in g.vertex_data:
                 salida += "Error: Punto no valido\n"
             else:
+                # Obtiene indices de inicio y fin
                 idx_inicio = g.vertex_data.index(inicio_nom)
                 idx_fin = g.vertex_data.index(fin_nom)
                 
-                #verificar que no esten bloqueados
+                # Verifica que no esten bloqueados
                 if g.bloqueados[idx_inicio] or g.bloqueados[idx_fin]:
                     salida += "Error: Punto de inicio o destino bloqueado\n"
                 else:
+                    # Calcula distancias usando Dijkstra
                     distancias, predecesores = g.dijkstra(inicio_nom)
+                    
+                    # Verifica si existe ruta disponible
                     if distancias[idx_fin] == float('inf'):
                         salida += "No hay ruta disponible\n"
                     else:
+                        # Reconstruye el camino
                         ruta = g.rebuild_road(predecesores, inicio_nom, fin_nom)
-                        salida += "\n=== RUTA ENCONTRADA ===\n"
-                        salida += "Tiempo estimado: " + str(distancias[idx_fin]) + " minutos\n"
-                        salida += "Ruta: "
+                        
+                        # Imprime resultado
+                        salida += "Ruta encontrada\n"
+                        salida += "Distancia: " + str(distancias[idx_fin]) + " metros\n"
+                        salida += "Camino: "
                         i = 0
                         while i < len(ruta):
                             salida += g.vertex_data[ruta[i]]
@@ -272,75 +278,74 @@ def main():
                             i += 1
                         salida += "\n"
         
-        #Opc 5:calcular solo el tiempo (sin mostrar toda la ruta)
+        # Opcion 5: Calcular solo la distancia (sin mostrar toda la ruta)
         elif opcion == "5":
-            salida += "Nombre del punto de inicio: "
-            inicio_nom = input(salida)
-            salida += "Nombre del punto de destino: "
-            fin_nom = input(salida)
-            salida = ""
+            # Formato: 5 inicio fin
+            inicio_nom = partes[1]
+            fin_nom = partes[2]
             
+            # Verifica que los nombres existan
             if inicio_nom not in g.vertex_data or fin_nom not in g.vertex_data:
                 salida += "Error: Punto no valido\n"
             else:
+                # Obtiene indice del destino
                 idx_fin = g.vertex_data.index(fin_nom)
+                
+                # Calcula distancias desde inicio
                 distancias, _ = g.dijkstra(inicio_nom)
+                
+                # Verifica si existe ruta
                 if distancias[idx_fin] == float('inf'):
                     salida += "No hay ruta disponible\n"
                 else:
-                    salida += "Tiempo estimado de " + inicio_nom + " a " + fin_nom + ": " + str(distancias[idx_fin]) + " minutos\n"
+                    salida += "Distancia de " + inicio_nom + " a " + fin_nom + ": " + str(distancias[idx_fin]) + " metros\n"
         
-        #Opc 2:Agregar un nuevo camino entre dos puntos existentes
+        # Opcion 2: Agregar un nuevo camino entre dos puntos existentes
         elif opcion == "2":
-            salida += "Punto A: "
-            a_nom = input(salida)
-            salida += "Punto B: "
-            b_nom = input(salida)
-            salida += "Distancia: "
-            dist_str = input(salida)
-            salida = ""
+            # Formato: 2 puntoA puntoB distancia
+            a_nom = partes[1]
+            b_nom = partes[2]
+            distancia = int(partes[3])
             
+            # Verifica que ambos puntos existan
             if a_nom not in g.vertex_data or b_nom not in g.vertex_data:
                 salida += "Error: Punto no valido\n"
             else:
-                try:
-                    distancia = int(dist_str)
-                    idx_a = g.vertex_data.index(a_nom)
-                    idx_b = g.vertex_data.index(b_nom)
-                    g.add_edge(idx_a, idx_b, distancia)
-                    salida += "Camino agregado: " + a_nom + " <-> " + b_nom + " (" + str(distancia) + " metros)\n"
-                except:
-                    salida += "Error: Distancia no valida\n"
+                # Obtiene indices
+                idx_a = g.vertex_data.index(a_nom)
+                idx_b = g.vertex_data.index(b_nom)
+                
+                # Agrega la arista bidireccional
+                g.add_edge(idx_a, idx_b, distancia)
+                salida += "Camino agregado: " + a_nom + " <-> " + b_nom + " (" + str(distancia) + " metros)\n"
         
-        #Opc 3:bloquear un punto (no se puede pasar por el)
+        # Opcion 3: Bloquear un punto (no se puede pasar por el)
         elif opcion == "3":
-            salida += "Nombre del punto a bloquear: "
-            punto_nom = input(salida)
-            salida = ""
+            # Formato: 3 punto
+            punto_nom = partes[1]
             
+            # Verifica que el punto exista
             if punto_nom not in g.vertex_data:
                 salida += "Error: Punto no valido\n"
             else:
+                # Obtiene indice y bloquea el punto
                 idx = g.vertex_data.index(punto_nom)
                 g.bloquear(idx)
                 salida += "Punto " + punto_nom + " bloqueado\n"
         
-        #Opc 4:habilitar un punto previamente bloqueado
+        # Opcion 4: Habilitar un punto previamente bloqueado
         elif opcion == "4":
-            salida += "Nombre del punto a habilitar: "
-            punto_nom = input(salida)
-            salida = ""
+            # Formato: 4 punto
+            punto_nom = partes[1]
             
+            # Verifica que el punto exista
             if punto_nom not in g.vertex_data:
                 salida += "Error: Punto no valido\n"
             else:
+                # Obtiene indice y habilita el punto
                 idx = g.vertex_data.index(punto_nom)
                 g.habilitar(idx)
                 salida += "Punto " + punto_nom + " habilitado\n"
-        
-        # Opcion invalida
-        else:
-            salida += "Opcion no valida\n"
     
     # Un solo print al final con toda la salida acumulada
     print(salida, end="")
@@ -348,3 +353,43 @@ def main():
 # Punto de entrada del programa
 if __name__ == "__main__":
     main()
+
+"""
+FORMATO DE ENTRADA:
+
+Primera linea: numero de operaciones (n)
+
+Lineas siguientes: operaciones en el siguiente formato:
+
+OPERACION 1: Calcular ruta completa (camino + distancia)
+    Formato: 1 <punto_inicio> <punto_fin>
+    Ejemplo: 1 Entrada principal (porteria) Edificio Administrativo
+    Salida: Ruta encontrada, Distancia y Camino completo
+
+OPERACION 2: Agregar un nuevo camino
+    Formato: 2 <punto_A> <punto_B> <distancia>
+    Ejemplo: 2 Bloque A Bloque B 50
+    Salida: Confirmacion del camino agregado
+
+OPERACION 3: Bloquear un punto
+    Formato: 3 <punto>
+    Ejemplo: 3 Cafeteria Principal
+    Salida: Confirmacion del punto bloqueado
+
+OPERACION 4: Habilitar un punto bloqueado
+    Formato: 4 <punto>
+    Ejemplo: 4 Cafeteria Principal
+    Salida: Confirmacion del punto habilitado
+
+OPERACION 5: Calcular solo distancia (sin mostrar ruta)
+    Formato: 5 <punto_inicio> <punto_fin>
+    Ejemplo: 5 Bloque A Bloque B
+    Salida: Distancia entre los puntos
+
+EJEMPLO DE ENTRADA COMPLETA:
+4
+1 Entrada principal (porteria) Biblioteca Principal
+3 Cafeteria Principal
+5 Bloque A Bloque C
+2 Bloque G Bloque H - Laboratorios/ Ing Civil,Electrica,Electronica,Fisica, 75
+"""
