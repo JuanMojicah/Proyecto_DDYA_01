@@ -1,12 +1,12 @@
-99
+100
 1 Entrada-principal-(porteria) Biblioteca-Principal
 5 Bloque-A Bloque-C
 1 Bloque-B Bloque-D
 5 Bloque-E Bloque-F
-1 Bloque-G Bloque-H-Laboratorios/ Ing Civil,Electrica,Electronica,Fisica,
-5 Bloque-I-Laboratorios/ Ing Sistemas Bloque-A
-1 Parqueadero-Principal (Entrada) Cafeteria-(Reggio's)
-5 Cafeteria-Videojuegos Bloque-K-Cafeteria Principal
+1 Bloque-G Bloque-H-Laboratorios/Ing-Civil,Electrica,Electronica,Fisica,
+5 Bloque-I-Laboratorios/Ing-Sistemas Bloque-A
+1 Parqueadero-Principal(Entrada) Cafeteria-(Reggio's)
+5 Cafeteria-Videojuegos Bloque-K-Cafeteria-Principal
 1 Biblioteca-Bloque-G Parqueadero-Bloque-C
 5 Parqueadero-Bloque-E Entrada-principal-(porteria)
 3 Cafeteria-Bloque-F
@@ -16,32 +16,32 @@
 2 Bloque-A Bloque-F 85
 1 Entrada-principal-(porteria) Edificio-Administrativo
 5 Bloque-C Bloque-G
-1 Bloque-H-Laboratorios/ Ing Civil,Electrica,Electronica,Fisica, Bloque-I-Laboratorios/ Ing Sistemas
+1 Bloque-H-Laboratorios/Ing-Civil,Electrica,Electronica,Fisica, Bloque-I-Laboratorios/Ing-Sistemas
 5 Parqueadero-PoliDeportivo Bloque-A
 3 Biblioteca-Principal
 4 Biblioteca-Principal
-1 Cafeterua-(Harvie's) Bloque-C
+1 Cafeteria-(Harvie's) Bloque-C
 5 Bloque-E Biblioteca-Bloque-G
 1 Parqueadero-Bloque-H Bloque-D
 5 Bloque-B Cafeteria-(Reggio's)
-2 Bloque-C Bloque-H-Laboratorios/ Ing Civil,Electrica,Electronica,Fisica, 95
-3 Parqueadero-Principal (Entrada)
+2 Bloque-C Bloque-H-Laboratorios/Ing-Civil,Electrica,Electronica,Fisica, 95
+3 Parqueadero-Principal(Entrada)
 1 Bloque-F Bloque-A
 5 Entrada-principal-(porteria) Bloque-G
-4 Parqueadero-Principal (Entrada)
+4 Parqueadero-Principal(Entrada)
 1 Bloque-D Biblioteca-Principal
 5 Bloque-A Bloque-E
 1 Bloque-A Parqueadero-Bloque-C
 5 Bloque-B Bloque-D
-2 Bloque-G Bloque-I-Laboratorios/ Ing Sistemas 45
-3 Bloque-K-Cafeteria Principal
+2 Bloque-G Bloque-I-Laboratorios/Ing-Sistemas 45
+3 Bloque-K-Cafeteria-Principal
 1 Bloque-C Entrada-principal-(porteria)
 5 Biblioteca-Bloque-G Bloque-F
-4 Bloque-K-Cafeteria Principal
+4 Bloque-K-Cafeteria-Principal
 1 Bloque-E Bloque-B
 5 Parqueadero-Bloque-E Bloque-C
 1 Bloque-D Bloque-G
-5 Bloque-A Bloque-H-Laboratorios/ Ing Civil,Electrica,Electronica,Fisica,
+5 Bloque-A Bloque-H-Laboratorios/Ing-Civil,Electrica,Electronica,Fisica,
 2 Bloque-D Cafeteria-(Reggio's) 60
 3 Bloque-A
 1 Bloque-F Bloque-E
@@ -51,33 +51,33 @@
 5 Bloque-B Biblioteca-Bloque-G
 1 Bloque-D Bloque-C
 5 Parqueadero-Bloque-C Bloque-E
-2 Bloque-B Bloque-K-Cafeteria Principal 75
+2 Bloque-B Bloque-K-Cafeteria-Principal 75
 3 Parqueadero-Bloque-H
 1 Bloque-G Bloque-F
-5 Bloque-A Cafeterua-(Harvie's)
+5 Bloque-A Cafeteria-(Harvie's)
 4 Parqueadero-Bloque-H
 1 Bloque-C Bloque-B
 5 Bloque-E Bloque-D
 1 Biblioteca-Principal Bloque-A
 5 Bloque-G Bloque-C
-2 Bloque-E Bloque-I-Laboratorios/ Ing Sistemas 50
+2 Bloque-E Bloque-I-Laboratorios/Ing-Sistemas 50
 3 Bloque-A
 1 Bloque-D Bloque-F
 5 Bloque-B Entrada-principal-(porteria)
 4 Bloque-A
 1 Bloque-F Biblioteca-Bloque-G
-5 Bloque-H-Laboratorios/ Ing Civil,Electrica,Electronica,Fisica, Bloque-A
+5 Bloque-H-Laboratorios/Ing-Civil,Electrica,Electronica,Fisica, Bloque-A
 1 Parqueadero-Bloque-C Bloque-G
 5 Bloque-E Bloque-B
 2 Bloque-C Parqueadero-PoliDeportivo 70
 3 Bloque-B
-1 Bloque-E Parqueadero-Principal (Entrada)
+1 Bloque-E Parqueadero-Principal(Entrada)
 5 Bloque-A Bloque-D
 4 Bloque-B
 1 Bloque-C Biblioteca-Principal
 5 Bloque-G Bloque-E
 1 Bloque-D Bloque-A
-5 Bloque-F Bloque-H-Laboratorios/ Ing Civil,Electrica,Electronica,Fisica,
+5 Bloque-F Bloque-H-Laboratorios/Ing-Civil,Electrica,Electronica,Fisica,
 2 Bloque-G Cafeteria-(Reggio's) 55
 3 Biblioteca-Bloque-G
 1 Entrada-principal-(porteria) Bloque-C
@@ -85,16 +85,18 @@
 4 Biblioteca-Bloque-G
 1 Bloque-E Bloque-A
 5 Parqueadero-Bloque-E Bloque-G
-1 Bloque-D Cafaterua-(Harvie's)
-5 Bloque-H-Laboratorios/ Ing Civil,Electrica,Electronica,Fisica, Bloque-B
+1 Bloque-D Cafeteria-(Harvie's)
+5 Bloque-H-Laboratorios/Ing-Civil,Electrica,Electronica,Fisica, Bloque-B
 1 Bloque-A Bloque-C
 5 Bloque-D Bloque-E
 2 Bloque-A Bloque-B 40
 3 Cafeteria-Bloque-F
-1 Bloque-G Bloque-H-Laboratorios/ Ing Civil,Electrica,Electronica,Fisica,
-5 Bloque-I-Laboratorios/ Ing Sistemas Bloque-A
+1 Bloque-G Bloque-H-Laboratorios/Ing-Civil,Electrica,Electronica,Fisica,
+5 Bloque-I-Laboratorios/Ing-Sistemas Bloque-A
 4 Cafeteria-Bloque-F
-1 Parqueadero-Principal (Entrada) Bloque-C
+1 Parqueadero-Principal(Entrada) Bloque-C
 5 Bloque-E Bloque-F
 1 Bloque-B Bloque-D
 5 Bloque-A Biblioteca-Principal
+1 Bloque-C Bloque-G
+5 Bloque-H-Laboratorios/Ing-Civil,Electrica,Electronica,Fisica, Entrada-principal-(porteria)

@@ -11,9 +11,9 @@ LUGARES = {
     "7" : "Bloque-E",
     "8" : "Bloque-F",
     "9" : "Bloque-G",
-    "10": "Bloque-H-Laboratorios/ Ing Civil,Electrica,Electronica,Fisica,",
-    "11": "Bloque-I-Laboratorios/ Ing Sistemas ",
-    "12": "Bloque-K-Cafeteria Principal",
+    "10": "Bloque-H-Laboratorios/Ing-Civil,Electrica,Electronica,Fisica,",
+    "11": "Bloque-I-Laboratorios/Ing-Sistemas",
+    "12": "Bloque-K-Cafeteria-Principal",
     "13": "Cafeteria-Bloque-F",
     "14": "Cafeteria-(Reggio's)",
     "15": "Cafeteria-Videojuegos",
@@ -22,7 +22,7 @@ LUGARES = {
     "18": "Biblioteca-Bloque-G",     
     "19": "Canchas-De-Fultbol",
     "20": "Chancha-Multiple-Polideportivo",
-    "21": "Parqueadero-Principal (Entrada)",
+    "21": "Parqueadero-Principal(Entrada)",
     "22": "Parqueadero-Bloque-C",
     "23": "Parqueadero-Bloque-E",
     "24": "Parqueadero-Bloque-H",
@@ -387,10 +387,6 @@ TIPOS DE DATOS:
 - OPERACION 4: int (tipo) + str (punto)
 - OPERACION 5: int (tipo) + str (inicio) + str (fin)
 
-EJEMPLO DE ENTRADA COMPLETA:
-4
-1 Entrada-principal-(porteria) Biblioteca-Principal
-3 Cafeteria-Bloque-F
-5 Bloque-A Bloque-C
-4 Cafeteria-Bloque-F
+USAR:
+Get-Content input_100_lineas.txt | python Proyecto.py
 """
