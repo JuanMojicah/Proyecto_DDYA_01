@@ -218,7 +218,7 @@ def main():
     # Inicializa el grafo
     g, mapa = grafo_campus()
     
-    # Acumulador de salida para un solo print (UVA style)
+    # Acumulador de salida para un solo print
     salida = ""
     
     # Lee todas las lineas del input de stdin
