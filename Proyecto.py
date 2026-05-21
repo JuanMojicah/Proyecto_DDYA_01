@@ -2,31 +2,31 @@ from sys import stdin
 
 #Diccionario
 LUGARES = {
-    "1" : "Entrada principal (porteria)",
-    "2" : "Edificio Administrativo",
-    "3" : "Bloque A",
-    "4" : "Bloque B",
-    "5" : "Bloque C",
-    "6" : "Bloque D",
-    "7" : "Bloque E",
-    "8" : "Bloque F",
-    "9" : "Bloque G",
-    "10": "Bloque H - Laboratorios/ Ing Civil,Electrica,Electronica,Fisica,",
-    "11": "Bloque I - Laboratorios/ Ing Sistemas ",
-    "12": "Bloque K - Cafeteria Principal",
-    "13": "cafeteria Bloque F",
-    "14": "Cafeteria (Reggio's)",
-    "15": "Cafeteria- Videojuegos",
-    "16": "Cafererua (Harvie's)",
-    "17": "Biblioteca Principal",
-    "18": "Biblioteca - Bloque G",     
-    "19": "Canchas De Fultbol",
-    "20": "Chancha Multiple / Polideportivo",
-    "21": "Parqueadero Principal (Entrada)",
-    "22": "Parqueadero Bloque C",
-    "23": "Parqueadero Bloque E",
-    "24": "Parqueadero Bloque H",
-    "25": "Parqueadero PoliDeportivo",
+    "1" : "Entrada-principal-(porteria)",
+    "2" : "Edificio-Administrativo",
+    "3" : "Bloque-A",
+    "4" : "Bloque-B",
+    "5" : "Bloque-C",
+    "6" : "Bloque-D",
+    "7" : "Bloque-E",
+    "8" : "Bloque-F",
+    "9" : "Bloque-G",
+    "10": "Bloque-H-Laboratorios/ Ing Civil,Electrica,Electronica,Fisica,",
+    "11": "Bloque-I-Laboratorios/ Ing Sistemas ",
+    "12": "Bloque-K-Cafeteria Principal",
+    "13": "Cafeteria-Bloque-F",
+    "14": "Cafeteria-(Reggio's)",
+    "15": "Cafeteria-Videojuegos",
+    "16": "Cafeteria-(Harvie's)",
+    "17": "Biblioteca-Principal",
+    "18": "Biblioteca-Bloque-G",     
+    "19": "Canchas-De-Fultbol",
+    "20": "Chancha-Multiple-Polideportivo",
+    "21": "Parqueadero-Principal (Entrada)",
+    "22": "Parqueadero-Bloque-C",
+    "23": "Parqueadero-Bloque-E",
+    "24": "Parqueadero-Bloque-H",
+    "25": "Parqueadero-PoliDeportivo",
     "26": "Auditorio"
 }
 
@@ -221,18 +221,13 @@ def main():
     # Acumulador de salida para un solo print
     salida = ""
     
-    # Lee todas las lineas del input de stdin
-    lineas = stdin.readlines()
-    
-    # Procesa el numero de operaciones
-    n = int(lineas[0].strip())
+    # Lee el numero de operaciones
+    n = int(stdin.readline().strip())
     
     # Procesa cada operacion
-    idx_linea = 1
     for _ in range(n):
-        # Lee la operacion actual
-        linea = lineas[idx_linea].strip()
-        idx_linea += 1
+        # Lee la operacion actual linea por linea
+        linea = stdin.readline().strip()
         
         # Separa los parametros de la linea
         partes = linea.split()
@@ -358,38 +353,44 @@ if __name__ == "__main__":
 FORMATO DE ENTRADA:
 
 Primera linea: numero de operaciones (n)
-
 Lineas siguientes: operaciones en el siguiente formato:
 
 OPERACION 1: Calcular ruta completa (camino + distancia)
     Formato: 1 <punto_inicio> <punto_fin>
-    Ejemplo: 1 Entrada principal (porteria) Edificio Administrativo
+    Ejemplo: 1 Entrada-principal-(porteria) Biblioteca-Principal
     Salida: Ruta encontrada, Distancia y Camino completo
 
 OPERACION 2: Agregar un nuevo camino
     Formato: 2 <punto_A> <punto_B> <distancia>
-    Ejemplo: 2 Bloque A Bloque B 50
+    Ejemplo: 2 Bloque-A Bloque-B 50
     Salida: Confirmacion del camino agregado
 
 OPERACION 3: Bloquear un punto
     Formato: 3 <punto>
-    Ejemplo: 3 Cafeteria Principal
+    Ejemplo: 3 Cafeteria-Bloque-F
     Salida: Confirmacion del punto bloqueado
 
 OPERACION 4: Habilitar un punto bloqueado
     Formato: 4 <punto>
-    Ejemplo: 4 Cafeteria Principal
+    Ejemplo: 4 Cafeteria-Bloque-F
     Salida: Confirmacion del punto habilitado
 
 OPERACION 5: Calcular solo distancia (sin mostrar ruta)
     Formato: 5 <punto_inicio> <punto_fin>
-    Ejemplo: 5 Bloque A Bloque B
+    Ejemplo: 5 Bloque-A Bloque-C
     Salida: Distancia entre los puntos
+
+TIPOS DE DATOS:
+- OPERACION 1: int (tipo) + str (inicio) + str (fin)
+- OPERACION 2: int (tipo) + str (puntoA) + str (puntoB) + int (distancia)
+- OPERACION 3: int (tipo) + str (punto)
+- OPERACION 4: int (tipo) + str (punto)
+- OPERACION 5: int (tipo) + str (inicio) + str (fin)
 
 EJEMPLO DE ENTRADA COMPLETA:
 4
-1 Entrada principal (porteria) Biblioteca Principal
-3 Cafeteria Principal
-5 Bloque A Bloque C
-2 Bloque G Bloque H - Laboratorios/ Ing Civil,Electrica,Electronica,Fisica, 75
+1 Entrada-principal-(porteria) Biblioteca-Principal
+3 Cafeteria-Bloque-F
+5 Bloque-A Bloque-C
+4 Cafeteria-Bloque-F
 """
